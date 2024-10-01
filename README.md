@@ -1,3 +1,7 @@
+作って学ぶNext.js/React Webサイト構築　エビスコム著を利用したWEBサイトになります。
+https://amzn.asia/d/heF1d1E
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
