@@ -6,7 +6,7 @@ import cssModule from "src/styles/header.module.css";
 export default function Header() {
   return (
     <header>
-      <Container>
+      <Container large>
         <div className={cssModule.flexContainer}>
           <Logo boxOn />
           <Nav />
