@@ -1,3 +1,4 @@
+import Contact from "components/Contact";
 import Container from "components/Container";
 import Hero from "components/Hero";
 import PostBody from "components/PostBody";
@@ -24,6 +25,7 @@ export default function About() {
           取り入れて、良いものを作れるようにしています。小さなヒントから新しいものを生み出すようなモノづくりは、これからも続けていきたいです。
         </p>
       </PostBody>
+      <Contact />
     </Container>
   );
 }
