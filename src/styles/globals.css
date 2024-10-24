@@ -46,6 +46,11 @@ h3 {
   font-size: var(--heading3);
 }
 
+/* 基本設定 */
+span > img {
+  transition: 0.2s;
+}
+
 /* リセットcss */
 body,
 h1,
