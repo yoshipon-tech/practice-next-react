@@ -1,6 +1,11 @@
 import cssModule from "src/styles/container.module.css";
 
-export default function Container({ children, large = false }) {
+type IProps = {
+  children: React.ReactNode;
+  large?: boolean;
+};
+
+export default function Container({ children, large = false }: IProps) {
   return (
     <div className={large ? cssModule.large : cssModule.default}>
       {children}
