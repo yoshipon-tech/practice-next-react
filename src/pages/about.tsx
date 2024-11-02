@@ -10,9 +10,12 @@ import {
 import Image from "next/image";
 import eyecatch from "images/about.jpg";
 
+import Meta from "components/Meta";
+
 export default function About() {
   return (
     <Container>
+      <Meta pageTitle="アバウト" />
       <Hero title="About" subtitle="About development activities" />
       <figure>
         <Image
