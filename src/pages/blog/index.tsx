@@ -5,7 +5,7 @@ import Meta from "components/Meta";
 export default function Home() {
   return (
     <Container>
-      <Meta pageTitle="ブログ" />
+      <Meta pageTitle="ブログ" pageDesc="ブログの記事一覧" />
       <Hero title="Blog" subtitle="Recent Posts" />
     </Container>
   );
