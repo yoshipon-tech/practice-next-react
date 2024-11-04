@@ -15,7 +15,13 @@ type MetaProps = {
 
 import siteImg from "images/ogp.jpg";
 
-export default function Meta({ pageTitle, pageDesc }: MetaProps) {
+export default function Meta({
+  pageTitle,
+  pageDesc,
+  pageImg,
+  pageImgW,
+  pageImgH,
+}: MetaProps) {
   //ページタイトル
   const title = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
 
@@ -27,7 +33,7 @@ export default function Meta({ pageTitle, pageDesc }: MetaProps) {
   const url = `${siteUrl}${router.asPath}`;
 
   // OGP画像
-  const img = pageImg || siteImag.src;
+  const img = pageImg || siteImg.src;
   const imgW = pageImgW || siteImg.width;
   const imgH = pageImgH || siteImg.height;
   const imgUrl = img.startsWith("https") ? img : `${siteUrl}${img}`;
