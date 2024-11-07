@@ -1,5 +1,6 @@
 import { getPostBySlug } from "lib/api";
 import Container from "components/Container";
+import PostHeader from "components/PostHeader";
 
 type ScheduleProps = {
   title: string;
@@ -18,7 +19,9 @@ export default function Schedule({
 }: ScheduleProps) {
   return (
     <Container>
-      <h1>{title}</h1>
+      <article>
+        <PostHeader title={title} subtitle="Blog Article" publish={publish} />
+      </article>
     </Container>
   );
 }
