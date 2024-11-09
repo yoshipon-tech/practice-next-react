@@ -2,6 +2,12 @@ import { getPostBySlug } from "lib/api";
 import Container from "components/Container";
 import PostHeader from "components/PostHeader";
 import Image from "next/image";
+import PostBody from "components/PostBody";
+import {
+  TwoColumn,
+  TwoColumnMain,
+  TwoColumnSidebar,
+} from "components/TwoColumn";
 
 type ScheduleProps = {
   title: string;
@@ -29,15 +35,23 @@ export default function Schedule({
 
         <figure>
           <Image
-          src={eyecatch.url}
-          alt=''
-          layout='responsive'
-          width={eyecatch.width}
-          height={eyecatch.height}
-          sizes="(min-width: 1152px) 1152px, 100vw"
-          priority
+            src={eyecatch.url}
+            alt=""
+            layout="responsive"
+            width={eyecatch.width}
+            height={eyecatch.height}
+            sizes="(min-width: 1152px) 1152px, 100vw"
+            priority
           />
         </figure>
+        <TwoColumn>
+          <TwoColumnMain>
+            <PostBody>
+              <div dangerouslySetInnerHTML={{ __html: content }} />
+            </PostBody>
+          </TwoColumnMain>
+          <TwoColumnSidebar></TwoColumnSidebar>
+        </TwoColumn>
       </article>
     </Container>
   );
