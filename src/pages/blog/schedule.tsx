@@ -8,6 +8,7 @@ import {
   TwoColumnMain,
   TwoColumnSidebar,
 } from "components/TwoColumn";
+import ConvertBody from "components/ConvertBody";
 
 type ScheduleProps = {
   title: string;
@@ -47,7 +48,7 @@ export default function Schedule({
         <TwoColumn>
           <TwoColumnMain>
             <PostBody>
-              <div dangerouslySetInnerHTML={{ __html: content }} />
+              <ConvertBody contentHTML={content} />
             </PostBody>
           </TwoColumnMain>
           <TwoColumnSidebar></TwoColumnSidebar>
