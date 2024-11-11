@@ -9,6 +9,11 @@ import {
   TwoColumnSidebar,
 } from "components/TwoColumn";
 import ConvertBody from "components/ConvertBody";
+import PostCategories from "components/PostCategories";
+import { Category } from "components/PostCategories";
+
+import { extranctText } from "lib/extractText";
+import Meta from "components/Meta";
 
 type ScheduleProps = {
   title: string;
@@ -19,7 +24,8 @@ type ScheduleProps = {
     width: number;
     height: number;
   };
-  categories: string[];
+  categories: Category[];
+  description: string;
 };
 
 export default function Schedule({
@@ -28,9 +34,17 @@ export default function Schedule({
   content,
   eyecatch,
   categories,
+  description,
 }: ScheduleProps) {
   return (
     <Container>
+      <Meta
+        pageTitle={title}
+        pageDesc={description}
+        pageImg={eyecatch.url}
+        pageImgW={eyecatch.width}
+        pageImgH={eyecatch.height}
+      />
       <article>
         <PostHeader title={title} subtitle="Blog Article" publish={publish} />
 
@@ -51,7 +65,9 @@ export default function Schedule({
               <ConvertBody contentHTML={content} />
             </PostBody>
           </TwoColumnMain>
-          <TwoColumnSidebar></TwoColumnSidebar>
+          <TwoColumnSidebar>
+            <PostCategories categories={categories} />
+          </TwoColumnSidebar>
         </TwoColumn>
       </article>
     </Container>
@@ -61,7 +77,8 @@ export default function Schedule({
 export async function getStaticProps() {
   const slug = "schedule";
   const post = await getPostBySlug(slug);
-  console.log("@@@@", post);
+
+  const description = extranctText(post.content);
 
   return {
     props: {
@@ -70,6 +87,7 @@ export async function getStaticProps() {
       content: post.content,
       eyecatch: post.eyecatch,
       categories: post.categories,
+      description: description,
     },
   };
 }
