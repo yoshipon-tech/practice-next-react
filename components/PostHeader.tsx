@@ -6,6 +6,7 @@ import ConvertDate from "./ConvertDate";
 type PostHeaderProps = {
   title: string;
   subtitle: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   publish?: any;
 };
 

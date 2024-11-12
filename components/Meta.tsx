@@ -57,8 +57,8 @@ export default function Meta({
       <link rel="apple-touch-icon" href={siteIcon} />
 
       <meta property="og:image" content={imgUrl} />
-      <meta property="og:image:width" content={imgW} />
-      <meta property="og:image:height" content={imgH} />
+      <meta property="og:image:width" content={imgW.toString()} />
+      <meta property="og:image:height" content={imgH.toString()} />
       <meta name="twitter:card" content="summary_large_image" />
     </Head>
   );
