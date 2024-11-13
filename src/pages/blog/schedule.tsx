@@ -12,11 +12,11 @@ import ConvertBody from "components/ConvertBody";
 import PostCategories from "components/PostCategories";
 import { Category } from "components/PostCategories";
 
+import { eyecatchLocal } from "lib/constants";
 import { extranctText } from "lib/extractText";
 import Meta from "components/Meta";
 import { getPlaiceholder } from "plaiceholder";
 //ローカルの代替アイキャッチ画像
-import { eyecatchLocal } from "lib/constants";
 
 type ScheduleProps = {
   title: string;
@@ -85,8 +85,6 @@ export async function getStaticProps() {
   const post = await getPostBySlug(slug);
   const description = extranctText(post.content);
   const eyecatch = post.eyecatch ?? eyecatchLocal;
-
-  console.log(eyecatch);
 
   const { base64 } = await getPlaiceholder(eyecatch.url);
   eyecatch.blurDataURL = base64;
