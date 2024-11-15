@@ -18,6 +18,7 @@ import Meta from "components/Meta";
 import { getPlaiceholder } from "plaiceholder";
 import { prevNextPost } from "lib/prevNextPost";
 import { Slugs } from "lib/prevNextPost";
+import Pagination from "components/Pagination";
 //ローカルの代替アイキャッチ画像
 
 type ScheduleProps = {
@@ -81,51 +82,55 @@ export default function Post({
             <PostCategories categories={categories} />
           </TwoColumnSidebar>
         </TwoColumn>
-        <div>
-          {prevPost.title}
-          {prevPost.slug}
-        </div>
-        <div>
-          {nextPost.title}
-          {nextPost.slug}
-        </div>
+        <Pagination
+          prevText={prevPost.title}
+          prevUrl={`/blog/${prevPost.slug}`}
+          nextText={nextPost.title}
+          nextUrl={`/blog/${nextPost.slug}`}
+        />
       </article>
     </Container>
   );
 }
 
 export async function getStaticPaths() {
-  const allSlugs = await getAllSlugs();
+  const allSlugs = await getAllSlugs(5);
   return {
     paths: allSlugs.map(({ slug }: { slug: string }) => `/blog/${slug}`),
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-  console.log(2);
   const slug = context.params.slug;
 
   const post = await getPostBySlug(slug);
-  const description = extranctText(post.content);
-  const eyecatch = post.eyecatch ?? eyecatchLocal;
 
-  const { base64 } = await getPlaiceholder(eyecatch.url);
-  eyecatch.blurDataURL = base64;
+  if (!post) {
+    return {
+      notFound: true,
+    };
+  } else {
+    const description = extranctText(post.content);
+    const eyecatch = post.eyecatch ?? eyecatchLocal;
 
-  const allSlugs = await getAllSlugs();
-  const [prevPost, nextPost] = prevNextPost(allSlugs, slug);
+    const { base64 } = await getPlaiceholder(eyecatch.url);
+    eyecatch.blurDataURL = base64;
 
-  return {
-    props: {
-      title: post.title,
-      publish: post.publishDate,
-      content: post.content,
-      eyecatch: eyecatch,
-      categories: post.categories,
-      description: description,
-      prevPost: prevPost,
-      nextPost: nextPost,
-    },
-  };
+    const allSlugs = await getAllSlugs();
+    const [prevPost, nextPost] = prevNextPost(allSlugs, slug);
+
+    return {
+      props: {
+        title: post.title,
+        publish: post.publishDate,
+        content: post.content,
+        eyecatch: eyecatch,
+        categories: post.categories,
+        description: description,
+        prevPost: prevPost,
+        nextPost: nextPost,
+      },
+    };
+  }
 }
