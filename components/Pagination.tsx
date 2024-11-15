@@ -7,8 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 type PaginationProps = {
-  prevText: string;
-  prevUrl: string;
+  prevText?: string;
+  prevUrl?: string;
   nextText: string;
   nextUrl: string;
 };
