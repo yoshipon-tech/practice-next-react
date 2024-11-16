@@ -8,10 +8,13 @@ config.autoAddCss = false;
 
 import type { AppProps } from "next/app";
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  );
+type CustomAppProps = AppProps & {
+  Component: AppProps["Component"] & {
+    getLayout?: (page: React.ReactNode) => React.ReactNode;
+  };
+};
+
+export default function MyApp({ Component, pageProps }: CustomAppProps) {
+  const getLayout = Component.getLayout || ((page) => page);
+  return <Layout>{getLayout(<Component {...pageProps} />)}</Layout>;
 }
